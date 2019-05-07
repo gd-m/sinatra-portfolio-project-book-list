@@ -8,3 +8,4 @@ use Rack::MethodOverride
 
 #All the other controllers will go here with 'use'.
 run ApplicationController
+use UsersController
