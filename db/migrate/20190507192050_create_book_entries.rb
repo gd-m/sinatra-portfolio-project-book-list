@@ -4,6 +4,7 @@ class CreateBookEntries < ActiveRecord::Migration
       t.integer :user_id
       t.string :name
       t.string :author
+      t.string :notes
       t.boolean :status #status for read/ unread. true = read / false = unread
 
       t.timestamps null: false
