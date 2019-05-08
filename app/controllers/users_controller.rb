@@ -34,8 +34,31 @@ class UsersController < ApplicationController
     erb :"users/signup"
   end
 
+  post '/signup' do
+    #i want to persist a user that has name, email AND password
+    if params[:name] != "" && params[:password] != "" && params[:email] != ""
+      @user = User.create(params)
+      #where does the user goes next
+
+      #the user will be logged in
+      session[:user_id] = @user[:id]
+
+      #redirect the user to landing page
+      redirect "/users/#{@user[:name]}"
+    else
+      redirect '/signup-error'
+    end
+
+    get '/signup-error' do
+      erb :signup_error
+    end
+
+
+  end
+
   get '/users/:name' do
-    
+    @user = User.find_by(session[:user_id])
+
     erb :"users/show"
 
   end
