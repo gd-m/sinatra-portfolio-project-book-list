@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user[:id]
 
       #redirect the user to landing page
-      redirect "/users/#{@user[:name]}"
+      redirect "/users/#{@user[:id]}/home"
 
     else
       #tell the user they enter invalid credentials
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user[:id]
 
       #redirect the user to landing page
-      redirect "/users/#{@user[:name]}"
+      redirect "/users/#{@user[:id]}/home"
     else
       redirect '/signup-error'
     end
@@ -56,11 +56,19 @@ class UsersController < ApplicationController
 
   end
 
-  get '/users/:name' do
-    @user = User.find_by(session[:user_id])
+  get '/users/:id/home' do
+    @user = User.find_by(id: session[:user_id])
+  
 
-    erb :"users/show"
+    erb :"users/home"
 
+  end
+
+  get '/logout' do
+    #clear session hash
+    session.clear
+    #redirect to welcome page
+    redirect '/'
   end
 
 
