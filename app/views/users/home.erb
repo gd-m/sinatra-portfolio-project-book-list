@@ -1,12 +1,11 @@
 <h1>Welcome, <%=@user.name%></h1>
 <span><a href="/logout"> Logout</a></span>
-<h3>Here is the List of Books.</h3><br><br>
-<% @user.book_entries.all.each do |book_entry|%>
-<h4><strong> Name of The Book: </strong><%=book_entry.name%></h4>
-<li><strong> Author Name: </strong><%=book_entry.author%></li>
-<li><strong> Notes: </strong><%=book_entry.notes%></li><br><br>
-<%end%>
+<h3>Here is the List of Books by all Users on Book App.</h3><br><br>
 
-checkbok content
-I've read this book - read - true
-I want to read this book - unread - false
+<% @book_entries.each do |book_entry| %>
+<h3><a href="/users/<%= book_entry.user_id %>/books/<%= book_entry.id %>"><%=book_entry.name%></a></h3>
+<h4>Author: <%=book_entry.author%> </h4>
+<p><strong>Notes: </strong><%= book_entry.notes%></p><br>
+<p><strong>Created At: </strong><%=book_entry.created_at%></p>
+<h5>By <a href="/users/<%=book_entry.user_id%>/profile"><%= book_entry.user.name%></a></h5>
+<% end %>
