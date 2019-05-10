@@ -71,7 +71,15 @@ class BooksController < ApplicationController
 
 
   #delete - DELETE - delete the particular entry
-  
+  delete '/users/:id/books/:book_id' do
+    set_book_entry
+    if logged_in? && authorized_to_edit?(@book_entry)
+      @book_entry.destroy
+      redirect '/users/:id/books'
+    else
+      redirect '/'
+    end
+  end
 
 
 
