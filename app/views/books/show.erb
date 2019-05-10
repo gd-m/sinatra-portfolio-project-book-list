@@ -8,4 +8,8 @@
 Edit Link
 <a href="/users/<%=current_user.id%>/books/<%=@book_entry.id%>/edit">Edit</a>
 Delete Link
+<form class="" action="/users/<%=current_user.id%>/books/<%=@book_entry.id%>" method="post">
+<input type="hidden" name="_method" value="delete">
+<button type="submit">Delete</button>
+</form>
 <% end %>
