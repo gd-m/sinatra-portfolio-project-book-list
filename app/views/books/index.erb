@@ -1,7 +1,7 @@
 <h1>All Books</h1>
 <h3>Here is the List of Books.</h3><br><br>
-<% current_user.book_entries.all.each do |book_entry|%>
-<h4><strong> Name of The Book: </strong><%=book_entry.name%></h4>
+<% current_user_books.each do |book_entry|%>
+<h4><strong> Name of The Book: <a href="/users/<%=current_user.id%>/books/<% book_entry.id%>"></strong><%=book_entry.name%></a></h4>
 <li><strong> Author Name: </strong><%=book_entry.author%></li>
 <li><strong> Notes: </strong><%=book_entry.notes%></li><br><br>
 <%end%>

@@ -1,0 +1,15 @@
+<h2>Update Book Entry</h2>
+<div class="form">
+  <form class="login-form" action="/users/<%=current_user.id%>/books/<%=@book_entry.id%>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <label for="name">Book Name: </label>
+    <input type="text" name="name" value=<%=@book_entry.name %>><br>
+    <label for="author">Author: </label>
+    <input type="text" name="author" value=<%=@book_entry.author %>><br>
+    <label for="notes">Notes: </label>
+    <input type="text" name="notes" value=<%=@book_entry.notes %><br><br>
+  <!--  <input type="radio" name="status" value=true> I'va read this book.
+    <input type="radio" name="status" value=false> I want to read this book. -->
+    <button type="submit">Update</button>
+</form>
+</div>

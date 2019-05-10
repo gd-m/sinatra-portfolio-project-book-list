@@ -1,0 +1,10 @@
+<h1><%= @book_entry.name %></h1>
+<h2><%= @book_entry.author %></h2>
+<p><%= @book_entry.notes %></p> <br>
+<span>Created at : <%= @book_entry.created_at %> </span><br>
+<span>Updated at: <%= @book_entry.updated_at %></span><br>
+
+
+Edit Link
+<a href="/users/<%=current_user.id%>/books/<%=@book_entry.id%>/edit">Edit</a>
+Delete Link
