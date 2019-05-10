@@ -42,6 +42,10 @@ class ApplicationController < Sinatra::Base
       end
       array.uniq.size
     end
+
+    def authorized_to_edit?(book_entry)
+      book_entry.user == current_user
+    end
   end
 
 end
