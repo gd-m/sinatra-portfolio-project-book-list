@@ -40,17 +40,32 @@ class BooksController < ApplicationController
 
   get '/users/:id/books/:book_id/edit' do
     set_book_entry
-    erb :"books/edit"
-
+    if logged_in?
+      if @book_entry.user == current_user
+        erb :"books/edit"
+      else
+        redirect "users/#{current_user.id}/home"
+      end
+    else
+      redirect '/'
+    end
   end
   #update - PATCH - upade the entry which has been edited
   patch '/users/:id/books/:book_id' do
     #find the book Entry
     set_book_entry
-    #assign new values to the book entry
-    @book_entry.update(name: params[:name], author: params[:author], notes: params[:notes])
-    #redirect to the book_entry
-    redirect "/users/#{current_user.id}/books/#{@book_entry.id}"
+    if logged_in?
+      if @book_entry.user == current_user
+        #assign new values to the book entry
+        @book_entry.update(name: params[:name], author: params[:author], notes: params[:notes])
+        #redirect to the book_entry
+        redirect "/users/#{current_user.id}/books/#{@book_entry.id}"
+      else
+        redirect "users/#{current_user.id}/home"
+      end
+    else
+      redirect '/'
+    end
   end
 
 
