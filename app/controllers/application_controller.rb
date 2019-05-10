@@ -11,21 +11,28 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-  #  if logged_in?
-  #    redirect "users/#{@current_user.id}/home"
-   #else
+  if logged_in?
+
+  redirect "users/#{current_user.id}/home"
+
+  else
     erb :welcome
-  
+  end
+
   end
 
   helpers do
 
     def current_user
-      @current_user ||= User.find_by(session[:user_id])
+      @current_user ||= User.find_by(id: session[:user_id])
     end
 
     def logged_in?
       !!current_user
+    end
+
+    def current_user_books
+      @books = current_user.book_entries.all
     end
   end
 

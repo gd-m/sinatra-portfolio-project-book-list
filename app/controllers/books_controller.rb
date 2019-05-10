@@ -12,12 +12,13 @@ class BooksController < ApplicationController
     erb :"books/new"
   end
 
-  post '/users/:id/books' do
-
+  post '/users/:id/books/new' do
+    @book_entry = BookEntry.create(name: params[:name], author: params[:author], notes: params[:notes], user_id: current_user.id)
+    redirect "/users/#{current_user.id}/books"
   end
 
   get '/users/:id/books' do
-
+    erb :"books/index"
   end
 
   get '/users/:id/books/:book_id' do
@@ -25,7 +26,7 @@ class BooksController < ApplicationController
   end
 
   get '/users/:id/books/:book_id/edit' do
-    
+
   end
 
 
