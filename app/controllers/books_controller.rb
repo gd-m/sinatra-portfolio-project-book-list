@@ -24,6 +24,7 @@ class BooksController < ApplicationController
   #show all - GET - /users/:id/Books -show all the entries in database
 
   get '/users/:id/books' do
+    @book_entries = BookEntry.all
     erb :"books/index"
   end
 
@@ -70,6 +71,7 @@ class BooksController < ApplicationController
 
 
   #delete - DELETE - delete the particular entry
+  
 
 
 
