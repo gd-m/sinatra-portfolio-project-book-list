@@ -4,7 +4,8 @@
 <span>Created at : <%= @book_entry.created_at %> </span><br>
 <span>Updated at: <%= @book_entry.updated_at %></span><br>
 
-
+<% if @book_entry.user == current_user %>
 Edit Link
 <a href="/users/<%=current_user.id%>/books/<%=@book_entry.id%>/edit">Edit</a>
 Delete Link
+<% end %>
