@@ -34,6 +34,14 @@ class ApplicationController < Sinatra::Base
     def current_user_books
       @books = current_user.book_entries.all
     end
+
+    def author_count(user)
+      array = []
+      user.book_entries.all.each do |book_entry|
+        array << book_entry.author
+      end
+      array.uniq.size
+    end
   end
 
 end
